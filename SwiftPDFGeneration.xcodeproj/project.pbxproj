@@ -10,6 +10,8 @@
 		52210AFA1CF60F3800547EB7 /* Mustache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52210AF91CF60F3800547EB7 /* Mustache.framework */; };
 		52210AFB1CF60F3800547EB7 /* Mustache.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52210AF91CF60F3800547EB7 /* Mustache.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52210AFE1CF60F5100547EB7 /* Mustache.framework.dSYM in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52210AFD1CF60F5100547EB7 /* Mustache.framework.dSYM */; };
+		52210B001CF60FF000547EB7 /* document.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 52210AFF1CF60FF000547EB7 /* document.mustache */; };
+		52210B021CF6101600547EB7 /* PDFMustache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210B011CF6101600547EB7 /* PDFMustache.swift */; };
 		68D49C611C5E8B6900F5320D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D49C601C5E8B6900F5320D /* AppDelegate.swift */; };
 		68D49C631C5E8B6900F5320D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68D49C621C5E8B6900F5320D /* Assets.xcassets */; };
 		68D49C661C5E8B6900F5320D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D49C641C5E8B6900F5320D /* MainMenu.xib */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		52210AF91CF60F3800547EB7 /* Mustache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mustache.framework; path = Carthage/Build/Mac/Mustache.framework; sourceTree = "<group>"; };
 		52210AFD1CF60F5100547EB7 /* Mustache.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Mustache.framework.dSYM; path = Carthage/Build/Mac/Mustache.framework.dSYM; sourceTree = "<group>"; };
+		52210AFF1CF60FF000547EB7 /* document.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = document.mustache; sourceTree = "<group>"; };
+		52210B011CF6101600547EB7 /* PDFMustache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFMustache.swift; sourceTree = "<group>"; };
 		68D49C5D1C5E8B6900F5320D /* SwiftPDFGeneration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftPDFGeneration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68D49C601C5E8B6900F5320D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68D49C621C5E8B6900F5320D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 				68D49C641C5E8B6900F5320D /* MainMenu.xib */,
 				68D49C671C5E8B6900F5320D /* Info.plist */,
 				68D49C6D1C5E96A200F5320D /* PDFConstants.swift */,
+				52210AFF1CF60FF000547EB7 /* document.mustache */,
+				52210B011CF6101600547EB7 /* PDFMustache.swift */,
 			);
 			path = SwiftPDFGeneration;
 			sourceTree = "<group>";
@@ -142,6 +148,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52210B001CF60FF000547EB7 /* document.mustache in Resources */,
 				68D49C631C5E8B6900F5320D /* Assets.xcassets in Resources */,
 				68D49C661C5E8B6900F5320D /* MainMenu.xib in Resources */,
 			);
@@ -154,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52210B021CF6101600547EB7 /* PDFMustache.swift in Sources */,
 				68D49C6E1C5E96A200F5320D /* PDFConstants.swift in Sources */,
 				68D49C611C5E8B6900F5320D /* AppDelegate.swift in Sources */,
 			);
