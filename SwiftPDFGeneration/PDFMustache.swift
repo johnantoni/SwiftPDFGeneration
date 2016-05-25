@@ -57,7 +57,7 @@ func generateMustachePDF(pdfLocation: String) -> Void {
 
 class MustachePDFPage: BasePDFPage{
     var pdfTitle:NSString = "Default PDF Title"
-    var creditInformation = "Default Credit Information"
+    var mustacheCopy = "Default Credit Information"
     var textParagraph = "something"
     
     init(hasMargin:Bool,
@@ -78,60 +78,37 @@ class MustachePDFPage: BasePDFPage{
                    hasPageNumber: hasPageNumber,
                    pageNumber: pageNumber)
         
-        self.pdfTitle = title
-        self.creditInformation = creditInformation
+        self.mustacheCopy = creditInformation
     }
     
-    func drawPDFTitle()
+    func drawPDFMustacheCopy()
     {
-        let pdfTitleX = 1/4 * self.pdfWidth
-        let pdfTitleY = self.pdfHeight / 2
-        let pdfTitleWidth = 1/2 * self.pdfWidth
-        let pdfTitleHeight = 1/5 * self.pdfHeight
-        let titleFont = NSFont(name: "Helvetica Bold", size: 30.0)
+
+        let pdfMustacheX = 1/16 * self.pdfWidth // horizontal placement (1/4 = 0.25 * 400 = 100)
+        let pdfMustacheY = 1/2 * self.pdfHeight // vertical placement
+        let pdfMustacheWidth = self.pdfWidth - (1/8 * self.pdfWidth) // printable width
+        let pdfMustacheHeight = 1/5 * self.pdfHeight // printable height
+        let mustacheFont = NSFont(name: "Helvetica", size: 20.0)
         
-        let titleParagraphStyle = NSMutableParagraphStyle()
-        titleParagraphStyle.alignment = NSCenterTextAlignment
+        let mustacheParagraphStyle = NSMutableParagraphStyle()
+        mustacheParagraphStyle.alignment = NSCenterTextAlignment
         
-        let titleFontAttributes = [
-            NSFontAttributeName: titleFont ?? NSFont.labelFontOfSize(12),
-            NSParagraphStyleAttributeName:titleParagraphStyle,
-            NSForegroundColorAttributeName: NSColor.blueColor()
+        // add black background to show printable area used by Mustache template
+        let mustacheFontAttributes = [
+            NSFontAttributeName: mustacheFont ?? NSFont.labelFontOfSize(12),
+            NSParagraphStyleAttributeName: mustacheParagraphStyle,
+            NSForegroundColorAttributeName: NSColor.whiteColor(),
+            NSBackgroundColorAttributeName: NSColor.blackColor()
         ]
         
-        let titleRect = NSMakeRect(pdfTitleX, pdfTitleY, pdfTitleWidth, pdfTitleHeight)
-        self.pdfTitle.drawInRect(titleRect, withAttributes: titleFontAttributes)
-        
-    }
-    
-    func drawPDFCreditInformation()
-    {
-        let pdfCreditX = 1/4 * self.pdfWidth
-        let pdfCreditY = self.pdfHeight / 2 - 1/5 * self.pdfHeight
-        let pdfCreditWidth = 1/2 * self.pdfWidth
-        let pdfCreditHeight = CGFloat(40.0)
-        let creditFont = NSFont(name: "Helvetica", size: 15.0)
-        
-        let creditParagraphStyle = NSMutableParagraphStyle()
-        creditParagraphStyle.alignment = NSCenterTextAlignment
-        
-        let creditFontAttributes = [
-            NSFontAttributeName: creditFont ?? NSFont.labelFontOfSize(12),
-            NSParagraphStyleAttributeName:creditParagraphStyle,
-            NSForegroundColorAttributeName: NSColor.darkGrayColor()
-        ]
-        
-        let creditRect = NSMakeRect(pdfCreditX, pdfCreditY, pdfCreditWidth, pdfCreditHeight)
-        self.creditInformation.drawInRect(creditRect, withAttributes: creditFontAttributes)
-        
-        //self.textParagraph.drawInRect(creditRect, withAttributes: creditFontAttributes)
+        let mustacheRect = NSMakeRect(pdfMustacheX, pdfMustacheY, pdfMustacheWidth, pdfMustacheHeight)
+        self.mustacheCopy.drawInRect(mustacheRect, withAttributes: mustacheFontAttributes)
         
     }
     
     override func drawWithBox(box: PDFDisplayBox) {
         super.drawWithBox(box)
-        self.drawPDFTitle()
-        self.drawPDFCreditInformation()
+        self.drawPDFMustacheCopy()
     }
     
 }

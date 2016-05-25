@@ -7,7 +7,5 @@ Improvements:
 
 * Updated with Swift 3.0 proposed changes
 * Added Save File dialog
-
-Todo:
-
 * Generate PDF via GRMustache template https://github.com/groue/GRMustache.swift
+
