@@ -7,13 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52210AFA1CF60F3800547EB7 /* Mustache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52210AF91CF60F3800547EB7 /* Mustache.framework */; };
+		52210AFB1CF60F3800547EB7 /* Mustache.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52210AF91CF60F3800547EB7 /* Mustache.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		52210AFE1CF60F5100547EB7 /* Mustache.framework.dSYM in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52210AFD1CF60F5100547EB7 /* Mustache.framework.dSYM */; };
 		68D49C611C5E8B6900F5320D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D49C601C5E8B6900F5320D /* AppDelegate.swift */; };
 		68D49C631C5E8B6900F5320D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68D49C621C5E8B6900F5320D /* Assets.xcassets */; };
 		68D49C661C5E8B6900F5320D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D49C641C5E8B6900F5320D /* MainMenu.xib */; };
-		68D49C6E1C5E96A200F5320D /* PDFConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D49C6D1C5E96A200F5320D /* PDFConstants.swift */; settings = {ASSET_TAGS = (); }; };
+		68D49C6E1C5E96A200F5320D /* PDFConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D49C6D1C5E96A200F5320D /* PDFConstants.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		52210AFC1CF60F3900547EB7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				52210AFE1CF60F5100547EB7 /* Mustache.framework.dSYM in Embed Frameworks */,
+				52210AFB1CF60F3800547EB7 /* Mustache.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		52210AF91CF60F3800547EB7 /* Mustache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mustache.framework; path = Carthage/Build/Mac/Mustache.framework; sourceTree = "<group>"; };
+		52210AFD1CF60F5100547EB7 /* Mustache.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Mustache.framework.dSYM; path = Carthage/Build/Mac/Mustache.framework.dSYM; sourceTree = "<group>"; };
 		68D49C5D1C5E8B6900F5320D /* SwiftPDFGeneration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftPDFGeneration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68D49C601C5E8B6900F5320D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68D49C621C5E8B6900F5320D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -27,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52210AFA1CF60F3800547EB7 /* Mustache.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,6 +57,8 @@
 		68D49C541C5E8B6900F5320D = {
 			isa = PBXGroup;
 			children = (
+				52210AFD1CF60F5100547EB7 /* Mustache.framework.dSYM */,
+				52210AF91CF60F3800547EB7 /* Mustache.framework */,
 				68D49C5F1C5E8B6900F5320D /* SwiftPDFGeneration */,
 				68D49C5E1C5E8B6900F5320D /* Products */,
 			);
@@ -71,6 +94,7 @@
 				68D49C591C5E8B6900F5320D /* Sources */,
 				68D49C5A1C5E8B6900F5320D /* Frameworks */,
 				68D49C5B1C5E8B6900F5320D /* Resources */,
+				52210AFC1CF60F3900547EB7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,6 +258,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SwiftPDFGeneration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KS.SwiftPDFGeneration;
@@ -246,6 +274,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = SwiftPDFGeneration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KS.SwiftPDFGeneration;
@@ -272,6 +304,7 @@
 				68D49C6C1C5E8B6900F5320D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
