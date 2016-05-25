@@ -11,7 +11,7 @@ import Foundation
 import Mustache
 import Quartz
 
-func generateMustachePDF() -> Void {
+func generateMustachePDF(pdfLocation: String) -> Void {
     // Load the `document.mustache` resource of the main bundle
     
     do {
@@ -47,7 +47,7 @@ func generateMustachePDF() -> Void {
 
         aPDFDocument.insertPage(coverPage, atIndex: 0)
 
-        aPDFDocument.writeToFile("/Users/john/Desktop/test.pdf")
+        aPDFDocument.writeToFile(pdfLocation)
 
         
     } catch {

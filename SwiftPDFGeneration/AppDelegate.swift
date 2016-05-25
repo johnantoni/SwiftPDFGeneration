@@ -31,8 +31,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification)
     {
         self.dataArray = self.createDemoData()
-        
-        generateMustachePDF()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -67,6 +65,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if let url = savePanel.URL {
                     let path = url.path! as String
                     self.generatePDF(path + ".pdf")
+                }
+            }
+        }
+    }
+
+    @IBAction func generatePDFMustacheButton(sender: NSButton) {
+        let savePanel = NSSavePanel()
+        
+        savePanel.beginWithCompletionHandler { (result: Int) -> Void in
+            if result == NSFileHandlingPanelOKButton {
+                if let url = savePanel.URL {
+                    let path = url.path! as String
+                    generateMustachePDF(path + ".pdf")
                 }
             }
         }
@@ -126,6 +137,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         aPDFDocument.writeToFile(pdfLocation)
     }
+    
+    
     
 }
 
