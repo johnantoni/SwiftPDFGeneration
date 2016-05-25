@@ -31,6 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification)
     {
         self.dataArray = self.createDemoData()
+        
+        generateMustachePDF()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
