@@ -56,19 +56,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return Array(mArray)
     }
 
-    @IBAction func generatePDF (sender:NSButton){
+    @IBAction func generatePDFButton (sender:NSButton){
+
+        let savePanel = NSSavePanel()
         
+        savePanel.beginWithCompletionHandler { (result: Int) -> Void in
+            if result == NSFileHandlingPanelOKButton {
+                if let url = savePanel.URL {
+                    let path = url.path! as String
+                    self.generatePDF(path + ".pdf")
+                }
+            }
+        }
+    }
+
+    func generatePDF (pdfLocation: String) -> Void {
         let aPDFDocument = PDFDocument()
         
         let coverPage = CoverPDFPage(hasMargin: true,
-            title: "This is the cover page title. Keep it short or keep it long",
-            creditInformation: "Created By: Knowstack.com \r Jan 2016",
-            headerText: "Some confidential info",
-            footerText: "www.knowstack.com",
-            pageWidth: CGFloat(900.0),
-            pageHeight: CGFloat(1200.0),
-            hasPageNumber: true,
-            pageNumber: 1)
+                                     title: "This is the cover page title. Keep it short or keep it long",
+                                     creditInformation: "Created By: Knowstack.com \r Jan 2016",
+                                     headerText: "Some confidential info",
+                                     footerText: "www.knowstack.com",
+                                     pageWidth: CGFloat(900.0),
+                                     pageHeight: CGFloat(1200.0),
+                                     hasPageNumber: true,
+                                     pageNumber: 1)
         
         
         
@@ -86,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         for i in 0 ..< numberOfPages
         {
-        
+            
             let startIndex = i * numberOfRowsPerPage
             var endIndex = i * numberOfRowsPerPage + numberOfRowsPerPage
             
@@ -95,24 +108,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             
             let pdfDataArray:[AnyObject] = Array(self.dataArray[startIndex..<endIndex])
-
+            
             let tabularDataPDF = TabularPDFPage (hasMargin: true,
-                headerText: "confidential info...",
-                footerText: "www.knowstack.com",
-                pageWidth: pageWidth,
-                pageHeight: pageHeight,
-                hasPageNumber: true,
-                pageNumber: i+1,
-                pdfData: pdfDataArray,
-                columnArray: columnInformationArray)
+                                                 headerText: "confidential info...",
+                                                 footerText: "www.knowstack.com",
+                                                 pageWidth: pageWidth,
+                                                 pageHeight: pageHeight,
+                                                 hasPageNumber: true,
+                                                 pageNumber: i+1,
+                                                 pdfData: pdfDataArray,
+                                                 columnArray: columnInformationArray)
             
             aPDFDocument.insertPage(tabularDataPDF, atIndex: i+1)
         }
         
-        aPDFDocument.writeToFile("/Users/john/sample1.pdf")
+        aPDFDocument.writeToFile(pdfLocation)
     }
-
-
+    
 }
 
 

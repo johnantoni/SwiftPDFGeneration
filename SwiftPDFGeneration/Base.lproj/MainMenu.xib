@@ -680,10 +680,10 @@
                         <buttonCell key="cell" type="push" title="Generate PDF and Download" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="q8m-MC-yxn">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <connections>
+                                <action selector="generatePDFButton:" target="Voe-Tx-rLC" id="gc8-wf-SBb"/>
+                            </connections>
                         </buttonCell>
-                        <connections>
-                            <action selector="generatePDF:" target="Voe-Tx-rLC" id="Nf0-sH-1jL"/>
-                        </connections>
                     </button>
                 </subviews>
             </view>
