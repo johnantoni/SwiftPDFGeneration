@@ -1,0 +1,40 @@
+{
+  "tests": [
+    {
+      "name": "Variable tags render strings HTML-escaped.",
+      "data": { "string": "hey<>&'\"" },
+      "template": "{{ string }}",
+      "expected": "hey&lt;&gt;&amp;&apos;&quot;"
+    },
+    {
+      "name": "Triple-mustache tags render strings, non HTML-escaped.",
+      "data": { "string": "hey<>&'\"" },
+      "template": "{{{ string }}}",
+      "expected": "hey<>&'\""
+    },
+    {
+      "name": "Non empty strings are truthy and enter the top of the context stack.",
+      "data": { "string": "abc" },
+      "template": "{{#string}}{{.}}{{/string}}",
+      "expected": "abc"
+    },
+    {
+      "name": "Empty strings are falsey.",
+      "data": { "string": "" },
+      "template": "{{#string}}truthy{{/string}}{{^string}}falsey{{/string}}",
+      "expected": "falsey"
+    },
+    {
+      "name": "Strings have `length` key.",
+      "data": { "string": "abc" },
+      "template": "{{ string.length }}",
+      "expected": "3"
+    },
+    {
+      "name": "String length is truthy when non zero, falsey when zero, and does not enter the top of the context stack (as all numbers).",
+      "data": { "strings": ["abc", ""] },
+      "template": "{{#strings}}<{{#length}}{{.}}{{/length}}{{^length}}empty{{/length}}>{{/strings}}",
+      "expected": "<abc><empty>"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "tests": [
+    {
+      "name": "`URLEscape` escapes nil as empty string.",
+      "data": {},
+      "template": "<{{URLEscape(missing)}}>",
+      "expected": "<>"
+    },
+    {
+      "name": "`URLEscape` escapes null as empty string.",
+      "data": { "null": null },
+      "template": "<{{URLEscape(null)}}>",
+      "expected": "<>"
+    },
+    {
+      "name": "`URLEscape` escapes any value, including numbers.",
+      "data": 1,
+      "template": "<{{URLEscape(.)}}>",
+      "expected": "<1>"
+    },
+    {
+      "name": "`URLEscape` escapes strings with UTF8 encoding.",
+      "data": "?&=\r\n\t\f\b<>\"[]{}",
+      "template": "{{URLEscape(.)}}",
+      "expected": "%3F%26%3D%0D%0A%09%0C%08%3C%3E%22%5B%5D%7B%7D"
+    },
+    {
+      "name": "`URLEscape` escapes unicode strings with UTF8 encoding.",
+      "data": "éı\ud83d\ude04",
+      "template": "{{URLEscape(.)}}",
+      "expected": "%C3%A9%C4%B1%F0%9F%98%84"
+    },
+    {
+      "name": "`URLEscape` escapes all inner variable tags in a section.",
+      "data": { "subject1": " ", "subject2": "&" },
+      "template": "{{#URLEscape}}subject1={{subject1}}&subject2={{subject2}}{{/URLEscape}}",
+      "expected": "subject1=%20&subject2=%26"
+    },
+    {
+      "name": "`URLEscape` does not escape inner section tags.",
+      "data": { "subject1": " " },
+      "template": "{{#URLEscape}}subject1={{subject1}}&subject2={{#subject2}}{{subject2}}{{/subject2}}{{^subject2}}0{{/subject2}}{{/URLEscape}}",
+      "expected": "subject1=%20&subject2=0"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "tests": [
+    {
+      "name": "Variable tags render the concatenation of array elements, HTML-escaped.",
+      "data": { "array": ["&", 1, "c"] },
+      "template": "{{array}}",
+      "expected": "&amp;1c"
+    },
+    {
+      "name": "Triple-mustache tags render the concatenation of array elements, non HTML-escaped.",
+      "data": { "array": ["&", 1, "c"] },
+      "template": "{{{array}}}",
+      "expected": "&1c"
+    },
+    {
+      "name": "Section tags render each element of an arrays, pushing each element on its turn on the top of the context stack.",
+      "data": { "array": [{ "name": "Arthur" }, { "name": "Barbara" }, { }], "name": "Root" },
+      "template": "{{#array}}<{{name}}>{{/array}}",
+      "expected": "<Arthur><Barbara><Root>"
+    },
+    {
+      "name": "Empty arrays are falsey.",
+      "data": { "array": [] },
+      "template": "{{#array}}truthy{{/array}}{{^array}}falsey{{/array}}",
+      "expected": "falsey"
+    },
+    {
+      "name": "Arrays have `count` key.",
+      "data": { "array": ["a", "b", "c"] },
+      "template": "{{ array.count }}",
+      "expected": "3"
+    },
+    {
+      "name": "Arrays have `first` key.",
+      "data": { "array": ["a", "b", "c"] },
+      "template": "{{ array.first }}",
+      "expected": "a"
+    },
+    {
+      "name": "Arrays have `last` key.",
+      "data": { "array": ["a", "b", "c"] },
+      "template": "{{ array.last }}",
+      "expected": "c"
+    }
+  ]
+}

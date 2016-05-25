@@ -1,0 +1,28 @@
+{
+  "tests": [
+    {
+      "name": "Variable tags render numbers.",
+      "data": { "number": 0 },
+      "template": "{{ number }}",
+      "expected": "0"
+    },
+    {
+      "name": "Triple-mustache tags render numbers, non HTML-escaped.",
+      "data": { "number": 0 },
+      "template": "{{{ number }}}",
+      "expected": "0"
+    },
+    {
+      "name": "Non-zero numbers are truthy and do not enter the top of the context stack.",
+      "data": { "number": 1, "key": "value" },
+      "template": "{{#number}}{{.key}}{{/number}}",
+      "expected": "value"
+    },
+    {
+      "name": "Zero numbers are falsey.",
+      "data": { "number": 0 },
+      "template": "{{#number}}truthy{{/number}}{{^number}}falsey{{/number}}",
+      "expected": "falsey"
+    }
+  ]
+}

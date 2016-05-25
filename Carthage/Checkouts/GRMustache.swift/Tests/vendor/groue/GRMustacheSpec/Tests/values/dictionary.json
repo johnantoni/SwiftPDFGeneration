@@ -1,0 +1,16 @@
+{
+  "tests": [
+    {
+      "name": "Non empty dictionariess are truthy and enter the top of the context stack.",
+      "data": { "dictionary": { "key": "value" } },
+      "template": "{{#dictionary}}{{.key}}{{/dictionary}}",
+      "expected": "value"
+    },
+    {
+      "name": "Empty dictionariess are truthy.",
+      "data": { "dictionary": { } },
+      "template": "{{#dictionary}}truthy{{/dictionary}}{{^dictionary}}falsey{{/dictionary}}",
+      "expected": "truthy"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "tests": [
+    {
+      "name": "`javascriptEscape` escapes nil as empty string.",
+      "data": {},
+      "template": "<{{javascriptEscape(missing)}}>",
+      "expected": "<>"
+    },
+    {
+      "name": "`javascriptEscape` escapes null as empty string.",
+      "data": { "null": null },
+      "template": "<{{javascriptEscape(null)}}>",
+      "expected": "<>"
+    },
+    {
+      "name": "`javascriptEscape` escapes any value, including numbers.",
+      "data": 1,
+      "template": "<{{javascriptEscape(.)}}>",
+      "expected": "<1>"
+    },
+    {
+      "name": "`javascriptEscape` escapes any value",
+      "data": "\"double quotes\" and 'single quotes'",
+      "template": "{{javascriptEscape(.)}}",
+      "expected": "\\u0022double quotes\\u0022 and \\u0027single quotes\\u0027"
+    },
+    {
+      "name": "`javascriptEscape` escapes double and single quotes",
+      "data": "\"double quotes\" and 'single quotes'",
+      "template": "{{javascriptEscape(.)}}",
+      "expected": "\\u0022double quotes\\u0022 and \\u0027single quotes\\u0027"
+    },
+    {
+      "name": "`javascriptEscape` escapes backslashes",
+      "data": "\\ : backslashes, too",
+      "template": "{{javascriptEscape(.)}}",
+      "expected": "\\u005C : backslashes, too"
+    },
+    {
+      "name": "`javascriptEscape` escapes control characters",
+      "data": "and lots of whitespace: \r\n\t\f\b",
+      "template": "{{javascriptEscape(.)}}",
+      "expected": "and lots of whitespace: \\u000D\\u000A\\u0009\\u000C\\u0008"
+    },
+    {
+      "name": "`javascriptEscape` escapes HTML tags",
+      "data": "<script>and this</script>",
+      "template": "{{javascriptEscape(.)}}",
+      "expected": "\\u003Cscript\\u003Eand this\\u003C/script\\u003E"
+    },
+    {
+      "name": "`javascriptEscape` escapes PARAGRAPH SEPARATOR U+2029 and LINE SEPARATOR U+2028",
+      "data": "paragraph separator:\u2029and line separator:\u2028",
+      "template": "{{javascriptEscape(.)}}",
+      "expected": "paragraph separator:\\u2029and line separator:\\u2028"
+    },
+    {
+      "name": "`javascriptEscape` escapes all inner variable tags in a section.",
+      "data": { "subject1": "'subject1'", "subject2": "'subject2'" },
+      "template": "{{#javascriptEscape}}{\"subject1\":\"{{subject1}}\",\"subject2\":\"{{subject2}}\"}{{/javascriptEscape}}",
+      "expected": "{\"subject1\":\"\\u0027subject1\\u0027\",\"subject2\":\"\\u0027subject2\\u0027\"}"
+    },
+    {
+      "name": "`javascriptEscape` does not escape inner section tags.",
+      "data": { "subject1": "'subject1'" },
+      "template": "{{#javascriptEscape}}{\"subject1\":{{#subject1}}\"{{subject1}}\"{{/subject1}}{{^subject1}}null{{/subject1}},\"subject2\":{{#subject2}}\"{{subject2}}\"{{/subject2}}{{^subject2}}null{{/subject2}}}{{/javascriptEscape}}",
+      "expected": "{\"subject1\":\"\\u0027subject1\\u0027\",\"subject2\":null}"
+    }
+  ]
+}

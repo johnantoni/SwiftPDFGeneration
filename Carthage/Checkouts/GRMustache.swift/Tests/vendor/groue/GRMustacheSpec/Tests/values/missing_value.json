@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "Variable tags do not render missing values.",
+      "data": { },
+      "template": "<{{ missing }}>",
+      "expected": "<>"
+    },
+    {
+      "name": "Triple-mustache tags do not render missing values.",
+      "data": { },
+      "template": "<{{{ missing }}}>",
+      "expected": "<>"
+    },
+    {
+      "name": "Missing value is falsey.",
+      "data": { },
+      "template": "{{#missing}}truthy{{/missing}}{{^missing}}falsey{{/missing}}",
+      "expected": "falsey"
+    }
+  ]
+}

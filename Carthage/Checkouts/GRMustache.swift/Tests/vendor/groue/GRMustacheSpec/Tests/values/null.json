@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "Variable tags do not render null.",
+      "data": { "null": null },
+      "template": "<{{ null }}>",
+      "expected": "<>"
+    },
+    {
+      "name": "Triple-mustache tags do not render null.",
+      "data": { "null": null },
+      "template": "<{{{ null }}}>",
+      "expected": "<>"
+    },
+    {
+      "name": "Null is falsey.",
+      "data": { "null": null },
+      "template": "{{#null}}truthy{{/null}}{{^null}}falsey{{/null}}",
+      "expected": "falsey"
+    }
+  ]
+}

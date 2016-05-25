@@ -1,0 +1,40 @@
+{
+  "tests": [
+    {
+      "name": "`HTMLEscape` escapes nil as empty string.",
+      "data": {},
+      "template": "<{{HTMLEscape(missing)}}>",
+      "expected": "<>"
+    },
+    {
+      "name": "`HTMLEscape` escapes null as empty string.",
+      "data": { "null": null },
+      "template": "<{{HTMLEscape(null)}}>",
+      "expected": "<>"
+    },
+    {
+      "name": "`HTMLEscape` escapes any value, including numbers.",
+      "data": 1,
+      "template": "<{{HTMLEscape(.)}}>",
+      "expected": "<1>"
+    },
+    {
+      "name": "`HTMLEscape` escapes HTML characters of strings.",
+      "data": "foo&\"'<>",
+      "template": "{{{.}}} {{{HTMLEscape(.)}}} {{HTMLEscape(.)}}",
+      "expected": "foo&\"'<> foo&amp;&quot;&apos;&lt;&gt; foo&amp;amp;&amp;quot;&amp;apos;&amp;lt;&amp;gt;"
+    },
+    {
+      "name": "`HTMLEscape` escapes all inner variable tags in a section.",
+      "data": { "subject1": "<", "subject2": ">" },
+      "template": "{{#HTMLEscape}}{{subject1}}{{subject2}}{{{subject1}}}{{{subject2}}}{{/HTMLEscape}}",
+      "expected": "&amp;lt;&amp;gt;&lt;&gt;"
+    },
+    {
+      "name": "`HTMLEscape` does not escape inner section tags.",
+      "data": { "subject1": "<" },
+      "template": "{{#HTMLEscape}}{{#subject1}}{{{subject1}}}{{/subject1}}{{^subject1}}-{{/subject1}}{{#subject2}}{{{subject2}}}{{/subject2}}{{^subject2}}-{{/subject2}}{{/HTMLEscape}}",
+      "expected": "&lt;-"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "tests": [
+    {
+      "name": "True boolean is truthy and does not enter the top of the context stack.",
+      "data": { "bool": true, "key": "value" },
+      "template": "{{#bool}}{{.key}}{{/bool}}",
+      "expected": "value"
+    },
+    {
+      "name": "False boolean is falsey.",
+      "data": { "bool": false },
+      "template": "{{#bool}}truthy{{/bool}}{{^bool}}falsey{{/bool}}",
+      "expected": "falsey"
+    }
+  ]
+}
